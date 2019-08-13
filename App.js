@@ -10,14 +10,15 @@ import DrawerComponent from "./components/drawer"
 import Discription from "./Screens/Discription"
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import ContactUs from "./Screens/ContactUs"
 
 class Loading extends React.Component {
   constructor(props){ 
     super(props);
     this.state= {language:null}
-    this.getLanguage();
-      
+   
+    this.getLanguage();    
+    
   }
   
   getLanguage =async ()=>{
@@ -53,7 +54,7 @@ class Menu extends React.Component{
        <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#00BCD4" translucent = {true}/>
      <View style={{height:30,backgroundColor:'black'}} />
      
-    <View style={{justifyContent:'center',alignItems:'center',position:'absolute',height:'70%',width:'100%'}}>
+    <View style={{justifyContent:'center',alignItems:'center'}}>
      <Text style={{color:'white',alignSelf:"center",fontSize:20}}>
      Welcome !
      </Text>
@@ -81,11 +82,8 @@ class Menu extends React.Component{
      </TouchableWithoutFeedback>
      </View>
       
-     <Text style={{color:'white',fontSize:20,marginTop:30}}>
-   You Can Change Language in setting later
-     </Text>
+     
      </View>
-    
     
      </View>
     ) 
@@ -107,8 +105,8 @@ const AppStack = createStackNavigator({
   Home:{screen:createTopTabNavigators,
   navigationOptions:({navigation})=>({
  header:(
-  <View>
-    <StatusBar  barStyle = "dark-content" hidden = {false} backgroundColor = "#FA8072" translucent = {true}/>
+  <View style={{height:90,backgroundColor:'#FA8072'}}>
+    <StatusBar   barStyle = "dark-content" hidden = {false} backgroundColor = "#FA8072" translucent = {true}/>
    <View style={{height:60,flexDirection:'row',backgroundColor:'#FA8072',alignItems:'center',justifyContent:'space-between',marginTop:30}}>
 <TouchableWithoutFeedback onPress={()=>navigation.openDrawer()}>
     <Ionicons style={{fontSize:25,marginLeft:8}} name="md-menu"/>
@@ -123,7 +121,7 @@ const AppStack = createStackNavigator({
   Discription:{screen:Discription,
   navigationOptions:({navigation})=>({
     header:(
-      <View>
+      <View style={{backgroundColor:'#FA8072'}}>
     <StatusBar  barStyle = "dark-content" hidden = {false} backgroundColor = "#FA8072" translucent = {true}/>
     <View style={{height:60,flexDirection:'row',backgroundColor:'#FA8072',alignItems:'center',justifyContent:'space-between',marginTop:30}}>
 <TouchableWithoutFeedback onPress={()=>navigation.navigate("Home")}>
@@ -142,10 +140,9 @@ const AppDrawerNavigator = createDrawerNavigator({
   Home:AppStack,
   AboutUs:{screen:AboutUs,
   },
-  ContactUs:{screen:()=>(<View><Text>Contact Us</Text></View>),
-  }
+  ContactUs:ContactUs
 },
-{
+{initialRouteName:'Home',
   contentComponent:DrawerComponent
 }
 )

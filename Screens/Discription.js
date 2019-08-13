@@ -1,11 +1,17 @@
 import React from "react"
 import {View,Text,TouchableWithoutFeedback,Linking} from "react-native"
+import {AdMobBanner} from "expo-ads-admob"
 export default class Discription extends React.Component{
     render(){
         var {discription,title,jobUrl}  = this.props.navigation.state.params 
        return(
         <View style={{flex:1,alignItems:'center',backgroundColor:'#F0FFF0'}}> 
-           <View style={{borderWidth:1,height:360,width:300,marginTop:100}}> 
+        <AdMobBanner
+bannerSize="smartBannerPortrait"
+  adUnitID="ca-app-pub-4144500271876768/6190921601"
+
+  didFailToReceiveAdWithError={this.bannerError} />
+           <View style={{borderWidth:1,height:360,width:300,marginTop:20}}> 
           
            <View style={{borderBottomWidth:1,width:'100%',height:80,justifyContent:'center',alignItems:'center'}} >
            <Text style={{fontSize:20,fontWeight:'bold'}}>{title}</Text>
@@ -17,7 +23,7 @@ export default class Discription extends React.Component{
               </Text>
               <View style={{borderBottomWidth:1,marginVertical:20}} />
               <Text style={{fontSize:18,fontWeight:'bold'}}>
-                  Qualification
+                  Qualification 
               </Text>
               <View style={{borderBottomWidth:1,marginVertical:20}} />
               <Text style={{fontSize:18,fontWeight:'bold'}}>
@@ -56,6 +62,15 @@ export default class Discription extends React.Component{
      </Text>
      </TouchableWithoutFeedback>
             </View>
+<View style={{backgroundColor:'white',width:'100%',position:'absolute',bottom:0,right:0,left:0}}>
+<AdMobBanner
+
+bannerSize="smartBannerPortrait"
+  adUnitID="ca-app-pub-4144500271876768/6190921601"
+  testDeviceID="EMULATOR"
+  didFailToReceiveAdWithError={this.bannerError} />
+</View>
+            
             </View>
         )
     }
